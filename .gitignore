@@ -1,0 +1,12 @@
+# Python
+__pycache__
+.venv
+.mypy_cache
+*.pyc
+
+# Vim
+Session.vim
+
+# Other
+*.xml
+*.conllu
