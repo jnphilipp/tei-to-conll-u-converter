@@ -1,6 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: ft=python fileencoding=utf-8 sts=4 sw=4 et:
+# Copyright (C) 2022 J. Nathanael Philipp (jnphilipp) <nathanael@philipp.land>
+# TEI-XML to CoNLL-U converter.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
 """TEI-XML to CoNLL-U converter."""
 
 from argparse import (
@@ -18,6 +32,7 @@ import sys
 
 
 __author__ = "J. Nathanael Philipp"
+__copyright__ = "Copyright 2019-2022 J. Nathanael Philipp (jnphilipp)"
 __email__ = "nathanael@philipp.land"
 __license__ = "GPLv3"
 __version__ = "0.1.0"
@@ -39,8 +54,12 @@ if __name__ == "__main__":
         "--version",
         action="version",
         version=(
-            f"%(prog)s v{__version__}\nReport bugs to {__github__}/issues.\n"
-            f"Written by {__author__} <{__email__}>"
+            f"%(prog)s v{__version__}\n{__copyright__}\n"
+            "License GPLv3+: GNU GPL version 3 or later "
+            "<https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free "
+            "to change and redistribute it.\nThere is NO WARRANTY, to the extent "
+            f"permitted by law.\n\nReport bugs to {__github__}/issues."
+            f"\nWritten by {__author__} <{__email__}>"
         ),
     )
     parser.add_argument(
