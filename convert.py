@@ -99,13 +99,13 @@ if __name__ == "__main__":
     for xml in args.XML:
         logging.info(f"Start convertion of {xml.name}.")
         sentences: List[TokenList] = []
-        parents = set(
+        parents = dict.fromkeys(
             lxml.etree.parse(xml)
             .getroot()
             .findall(".//{http://www.tei-c.org/ns/1.0}w/..")
         )
         logging.info(f"Found {len(parents):d} sentences.")
-        for p in parents:
+        for p in parents.keys():
             logging.debug(f"Parsing words from {p.tag}.")
             tokens = TokenList(metadata={"sent_id": len(sentences) + 1})
             i = 0
