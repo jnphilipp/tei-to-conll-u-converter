@@ -117,21 +117,36 @@ if __name__ == "__main__":
                 ]:
                     logging.debug(f"Skipping {e.tag}.")
                     continue
+                pos = None
+                if e.tag == "{http://www.tei-c.org/ns/1.0}pc":
+                    pos = "PUNCT"
+                elif "subtype" in e.attrib and e.attrib["subtype"] == "number":
+                    pos = "NUM"
+
+                misc = []
+                if e.tail != " ":
+                    misc.append("SpaceAfter=No")
+                if "type" in e.attrib:
+                    misc.append(f"Type={e.attrib.get('type')}")
+                if "subtype" in e.attrib:
+                    misc.append(f"Subtype={e.attrib.get('subtype')}")
+                if "orig" in e.attrib:
+                    misc.append(f"Orig={e.attrib.get('orig')}")
+                if "norm" in e.attrib:
+                    misc.append(f"Norm={e.attrib.get('norm')}")
                 tokens.append(
                     Token(
                         {
                             "id": i,
                             "form": "".join(e.itertext(with_tail=False)),
                             "lemma": e.attrib.get("lemma"),
-                            "upos": "PUNCT"
-                            if e.tag == "{http://www.tei-c.org/ns/1.0}pc"
-                            else None,
+                            "upos": pos,
                             "xpos": None,
                             "feats": None,
                             "head": None,
                             "deprel": None,
                             "deps": None,
-                            "misc": None if e.tail == " " else "SpaceAfter=No",
+                            "misc": "|".join(misc) if len(misc) > 0 else None,
                         }
                     )
                 )
